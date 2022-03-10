@@ -151,7 +151,7 @@ public class RadixSortVisualizer extends Application {
             //Initialize the value of the sortInfo text
             sortInfo.setText("Now sorting the 1 digit");
             //Set up the sorting animation, it will run ever .02 seconds
-            every2Seconds = new Timeline(new KeyFrame(Duration.seconds(.02), new EventHandler<ActionEvent>() {
+            every2Seconds = new Timeline(new KeyFrame(Duration.seconds(.02), new EventHandler<>() {
                 //Count keeps track of the current digit place being sorted
                 int count = 0;
                 //Repeats keeps track of how many iterations we use while sorting, used to calculate time spent and comparisons
@@ -180,7 +180,7 @@ public class RadixSortVisualizer extends Application {
                     //Increament the iteration counter
                     repeats++;
                     //Update the current number text to display the current number being pushed forward
-                    currentNumber.setText("Pushing the number " + Integer.toString(l.get(current)));
+                    currentNumber.setText("Pushing the number " + l.get(current));
                     //Check to see if we are done sorting the current digit place
                     boolean done = r.sortListByDigit(count);
                     //Check to see if the list is completely sorted, either by the current digit place, or overall
@@ -192,19 +192,25 @@ public class RadixSortVisualizer extends Application {
                             //Clear the output file to make way for new data
                             try{
                                 Files.writeString(file, "");
-                            }catch (IOException i){}
+                            }catch (IOException i){
+                                //Print file not found error message
+                                System.out.println("File not found at " + file);
+                            }
                         }
                         try{
                             //Set the output variable to the contents of the file, then add the new sorted list to the output. Then write the output to the file
-                            String output = "";
-                            output += Files.readString(file);
-                            output += "Sorted by " + count + " digit:\n";
+                            StringBuilder output = new StringBuilder();
+                            output.append(Files.readString(file));
+                            output.append("Sorted by ").append(count).append(" digit:\n");
                             for (int i : l){
-                                output += i + "\n";
+                                output.append(i).append("\n");
                             }
-                            output+="\n\n";
-                            Files.writeString(file, output);
-                        }catch (IOException i){}
+                            output.append("\n\n");
+                            Files.writeString(file, output.toString());
+                        }catch (IOException i){
+                            //Print file not found error message
+                            System.out.println("File not found at " + file);
+                        }
                         //Increment the digit place counter
                         count++;
                         //Check to see if we are not completely done sorting
