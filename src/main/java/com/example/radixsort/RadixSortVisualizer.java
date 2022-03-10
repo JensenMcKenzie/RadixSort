@@ -22,7 +22,7 @@ import java.nio.file.Path;
 import java.util.Random;
 import java.util.ArrayList;
 
-public class HelloApplication extends Application {
+public class RadixSortVisualizer extends Application {
     //Javafx items
     public Group rectangles;
     public TextField userInput;
@@ -34,12 +34,12 @@ public class HelloApplication extends Application {
 
     //List of all integers
     private static ArrayList<Integer> l;
-    //RadixSort object
+    //RadixSortVisualizer object
     private static RadixSort r;
     //Current rectangle index
     private int current;
 
-    //RadixSort class
+    //RadixSortVisualizer class
     public class RadixSort{
         //List of integers
         ArrayList<Integer> list;
@@ -235,7 +235,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //Load fxml files
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RadixSortVisualizer.class.getResource("RaxidSortVisualizer.fxml"));
         //Load a new scene, and set the title
         Scene scene = new Scene(fxmlLoader.load(), 500, 500);
         //Display the scene to the stage
