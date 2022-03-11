@@ -226,6 +226,7 @@ public class RadixSortVisualizer extends Application {
                     if (count == r.getGreatestDigit()){
                         //End the animation
                         every2Seconds.stop();
+                        current = 0;
                     }
                 }
             }));
@@ -236,6 +237,7 @@ public class RadixSortVisualizer extends Application {
         }else{
             //If we are already running an animation, stop it
             every2Seconds.stop();
+            current = 0;
         }
     }
     @Override
